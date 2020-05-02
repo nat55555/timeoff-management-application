@@ -1,11 +1,12 @@
 version: '3'
 services:
   timeoffapp:
-    build: 
+    image: "timeoff-management-application" #+":$BUILD_NUMBER"  
+    build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "4000:4000"
     environment:
        - "TZ=America/Bogota"
-    mem_limit: 1000
+    mem_limit: 10000
