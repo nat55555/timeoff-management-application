@@ -9,4 +9,3 @@ services:
       - "4000:4000"
     environment:
        - "TZ=America/Bogota"
-    mem_limit: 10000
