@@ -26,8 +26,7 @@ RUN apk add --no-cache \
     make \
     nodejs npm \
     python \
-    vim \
-    iptables
+    vim
     
 RUN adduser --system app --home /app
 USER app
