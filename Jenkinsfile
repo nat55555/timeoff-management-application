@@ -36,11 +36,9 @@ pipeline {
 	options{
     buildDiscarder(logRotator(numToKeepStr: '30'))
     disableConcurrentBuilds()
-    gitLabConnection('GitLabLans')
     }
-
 	triggers {
-		gitlab(triggerOnPush: true,
+		github(triggerOnPush: true,
 		triggerOnMergeRequest: true,
 		secretToken: "dWEGWQRGWRdddddddddeer4445",
 		branchFilterType: "NameBasedFilter",
@@ -145,7 +143,7 @@ pipeline {
 												try {
 
 														stage('Push Docker Images to Nexus Registry'){
-														sh "echo changeme | /usr/local/bin/docker-compose login -u admin --password-stdin 192.168.86.86:8081"
+														sh "echo changeme | docker login -u admin --password-stdin 192.168.86.86:8081"
 														sh "/usr/local/bin/docker-compose push 192.168.86.86:8081/'timeoff-management-application:'+${BUILD_NUMBER}}"
 														//sh "docker rmi $(docker images --filter=reference="NexusDockerRegistryUrl/ImageName*" -q)'"
 														sh "docker logout NexusDockerRegistryUrl"
