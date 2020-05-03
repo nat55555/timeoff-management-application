@@ -40,7 +40,7 @@ pipeline {
     disableConcurrentBuilds()
     }
 	triggers {
-		pollSCM('')
+		pollSCM('* * * * *')
 	}
 	environment {
 		TARGET_SERVER="192.168.86.86"
