@@ -109,9 +109,12 @@ pipeline {
 		
 
     stage('Verify app status') {
-            steps { 
-					timeout(time: 15, unit: 'SECONDS') {
-					  waitUntil {	
+	     options {
+	        timeout(time: 2, unit: 'MINUTES')
+	     }	    
+            steps {
+		    script {    
+
 									try {
 										
 											def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" 192.168.86.86:3333', returnStdout: true)
@@ -126,9 +129,10 @@ pipeline {
 										stage_actual.add(env.STAGE_NAME)
 										throw(e)
 									}
-								}
-					}
-			}	
+								
+					
+			 }
+	       }
 	
     } //Verify app Status
 	
