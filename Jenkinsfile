@@ -107,11 +107,30 @@ pipeline {
 
     }
 		
-		
 
-    //stage('Test image') {
+    stage('Verify app status') {
+            steps { 
+					timeout(time: 15, unit: 'SECONDS') {
+					  waitUntil {	
+									try {
+										
+											def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" 192.168.86.86:3333', returnStdout: true)
+											
+											if ( response != '200'){
+											currentBuild.result = "failure"
+											}
 
-    //}
+										
+									} catch (e) {
+										echo('detected failure: verify app status')
+										stage_actual.add(env.STAGE_NAME)
+										throw(e)
+									}
+								}
+					}
+			}	
+	
+    } //Verify app Status
 	
     stage('Docker image run') {
             steps { 
