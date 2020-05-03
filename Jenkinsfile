@@ -38,13 +38,7 @@ pipeline {
     disableConcurrentBuilds()
     }
 	triggers {
-		github(triggerOnPush: true,
-		triggerOnMergeRequest: true,
-		secretToken: "dWEGWQRGWRdddddddddeer4445",
-		branchFilterType: "NameBasedFilter",
-		includeBranchesSpec: "develop,master",
-		excludeBranchesSpec: ""				
-		)
+		githubpush()
 	}
 	environment {
 		TARGET_SERVER="192.168.86.86"
