@@ -1,7 +1,7 @@
 version: '3'
 services:
   timeoffapp:
-    image: "timeoff-management-application" #+":$BUILD_NUMBER"  
+    image: "192.168.86.86:8081/timeoff-management-application" #+":$BUILD_NUMBER"  
     build:
       context: .
       dockerfile: Dockerfile
