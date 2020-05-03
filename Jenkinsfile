@@ -158,7 +158,8 @@ pipeline {
 	       }
 	
     } //Verify app Status		
-		
+
+/*		
          stage('Push docker Image to Nexus') { 
             steps { 
 				script{ 
@@ -180,32 +181,7 @@ pipeline {
 			}
         } //fin Push docker Image to Nexus
 
-
-
-       
-        stage('Reports') {
-            steps { 
-				script{ 
-												try {
-	
-
-														//	junit '**/surefire-reports/*.xml'
-														
-												
-														
-														//	dependencyCheckPublisher pattern: 'aaa/**/target/dependency-check-report.xml'
-
-
-			 
-												} catch (e) {
-													echo('detected failure: Reports')
-													stage_actual.add(env.STAGE_NAME)
-													throw(e)
-										 		}
-						} // fin script
-					
-			} //fin steps
-		} // fin reports
+*/
 		
 	} // fin stages
 
