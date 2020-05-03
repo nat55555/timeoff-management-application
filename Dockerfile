@@ -32,7 +32,7 @@ RUN adduser --system app --home /app
 USER app
 COPY . /app/timeoff-management
 WORKDIR /app/timeoff-management
-RUN chown app:app -R /app/timeoff-management
+RUN chmod 777 /app/timeoff-management
 
 RUN npm install
 
