@@ -107,6 +107,26 @@ pipeline {
 
     }
 		
+	
+    stage('Docker image run') {
+            steps { 
+				script{ 
+							try {
+								
+								sh "/usr/local/bin/docker-compose rm -f "	
+							//	sh "docker run -d -p 3000:3000 --name docker-tom  'timeoff-management-application:${BUILD_NUMBER}'"
+								sh "/usr/local/bin/docker-compose up -d"
+								sh "docker ps"	
+								
+							} catch (e) {
+								echo('detected failure: Docker Image run')
+								stage_actual.add(env.STAGE_NAME)
+								throw(e)
+							}	
+				}
+			}	
+	
+    } //Docker Image run		
 
     stage('Verify app status') {
 	     options {
@@ -134,27 +154,7 @@ pipeline {
 			 }
 	       }
 	
-    } //Verify app Status
-	
-    stage('Docker image run') {
-            steps { 
-				script{ 
-							try {
-								
-								sh "/usr/local/bin/docker-compose rm -f "	
-							//	sh "docker run -d -p 3000:3000 --name docker-tom  'timeoff-management-application:${BUILD_NUMBER}'"
-								sh "/usr/local/bin/docker-compose up -d"
-								sh "docker ps"	
-								
-							} catch (e) {
-								echo('detected failure: Docker Image run')
-								stage_actual.add(env.STAGE_NAME)
-								throw(e)
-							}	
-				}
-			}	
-	
-    } //Docker Image run		
+    } //Verify app Status		
 		
          stage('Push docker Image to Nexus') { 
             steps { 
