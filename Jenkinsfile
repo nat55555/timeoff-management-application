@@ -38,7 +38,7 @@ pipeline {
     disableConcurrentBuilds()
     }
 	triggers {
-		githubpush()
+		githubPush()
 	}
 	environment {
 		TARGET_SERVER="192.168.86.86"
