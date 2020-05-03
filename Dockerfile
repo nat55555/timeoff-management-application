@@ -33,6 +33,7 @@ USER app
 WORKDIR /app
 COPY . /app/timeoff-management
 WORKDIR /app/timeoff-management
+RUN chmod 777 /apps/timeoff-management
 
 RUN npm install
 
