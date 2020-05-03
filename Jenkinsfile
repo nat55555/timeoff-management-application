@@ -137,6 +137,9 @@ pipeline {
 
 									try {
 										
+										   // wait for app start
+										     	sh 'sleep 30'
+										
 											def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" 192.168.86.86:3333', returnStdout: true)
 											
 											if ( response != '200'){
